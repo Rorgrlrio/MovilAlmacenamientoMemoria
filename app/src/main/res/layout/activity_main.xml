@@ -9,13 +9,14 @@
     <EditText
         android:id="@+id/txtEditor"
         android:layout_width="411dp"
-        android:layout_height="646dp"
+        android:layout_height="567dp"
         android:layout_marginBottom="1dp"
         android:background="@color/teal_200"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/editor"
         android:inputType="textMultiLine"
+        android:textSize="38dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

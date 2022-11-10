@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.security.Guard;
 
 public class ArchivoActivity extends AppCompatActivity {
@@ -104,5 +106,30 @@ public class ArchivoActivity extends AppCompatActivity {
             Toast.makeText(this, "El archivo no se pudo leer", Toast.LENGTH_SHORT).show();
         }
     }//abrirArchivoSD
+
+    private  void guardarArchivoSD(String n){
+
+        try{
+            //Se obtiene la ruta del almacenamiento externo
+            File tarjetaSD = Environment.getExternalStorageDirectory();
+            //Se muestra la ruta
+            Toast.makeText(this, tarjetaSD.getPath(), Toast.LENGTH_SHORT).show();
+            //Se define rl nombre del archivo y la ruta donde sera guardado
+            File archivo = new File(tarjetaSD.getPath(), n);
+            //Crea el archivo y establece el modo de acceso
+            OutputStreamWriter crearArchivo = new OutputStreamWriter(openFileOutput(archivo.getName(), Activity.MODE_PRIVATE));
+            //Se escribe el contenido en el archivo
+            crearArchivo.write(contenido);
+            //Se limpia el buffer
+            crearArchivo.flush();
+            //Se cierra el archivo
+            crearArchivo.close();
+            Toast.makeText(this, "Informacion almacenada !!!", Toast.LENGTH_SHORT).show();
+
+        }catch (IOException e){
+            Toast.makeText(this, "El archivo no se pudo guardar", Toast.LENGTH_SHORT).show();
+        }//catch
+
+    }//guardarArchivoSD
     
 }
